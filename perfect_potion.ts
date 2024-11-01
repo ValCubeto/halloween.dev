@@ -23,3 +23,40 @@ function createMagicPotion(potions: number[], target: number): [number, number] 
   }
   return candidates[candIndex];
 }
+
+// Testing
+function assertEq(values: number[] | undefined, expected: number[] | undefined) {
+  let valuesRepr = values === undefined ? "undefined" : `[${values.join(", ")}]`;
+  let expectedRepr = expected === undefined ? "undefined" : `[${expected.join(", ")}]`;
+  if (expected === undefined || values === undefined) {
+    if (expected !== values) {
+      console.error(`Assertion failed: ${valuesRepr} != ${expectedRepr}`);
+    } else {
+      console.log(`Assertion success: ${valuesRepr} == ${expectedRepr}`);
+    }
+    return;
+  }
+  values.forEach((value, index) => {
+    let expectedVal = expected[index];
+    if (value !== expectedVal) {
+      console.error(`Assertion failed: ${valuesRepr} != ${expectedRepr}`);
+      return;
+    }
+  });
+  console.log(`Assertion success: ${valuesRepr} == ${expectedRepr}`);
+}
+
+assertEq(
+  createMagicPotion([4, 5, 6, 2], 8),
+  [2, 3]
+);
+
+assertEq(
+  createMagicPotion([1, 2, 3, 4], 9),
+  undefined
+);
+
+assertEq(
+  createMagicPotion([1, 2, 3, 4], 5),
+  [1, 2]
+);
