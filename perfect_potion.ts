@@ -1,4 +1,4 @@
-function createMagicPotion(potions: number[], target: number): [number, number] {
+function createMagicPotion(potions: number[], target: number): [number, number] | undefined {
   let candidates: [number, number][] = [];
   potions.forEach((potion, currIndex) => {
     for (let i = currIndex + 1; i < potions.length; i += 1) {
